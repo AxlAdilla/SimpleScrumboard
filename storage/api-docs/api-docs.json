@@ -1,0 +1,647 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Simple Scrumboard",
+        "version": "0.1"
+    },
+    "paths": {
+        "/api/boards": {
+            "get": {
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Get All Boards",
+                "operationId": "8544b25ebe792c9b47f2d926e2c8ebf8",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "examples": {
+                            "string": {
+                                "summary": "Set Parameter Application json",
+                                "value": "Application/json"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/JsonBaseTransformer"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/Board"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonBaseTransformer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/boards/{id}": {
+            "get": {
+                "tags": [
+                    "Boards"
+                ],
+                "summary": "Get Board by ID",
+                "operationId": "2a5da2c5db5012e8f8d32e941099bfa8",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "examples": {
+                            "string": {
+                                "summary": "Set Parameter Application json",
+                                "value": "Application/json"
+                            }
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "examples": {
+                            "int": {
+                                "summary": "ID value",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/JsonBaseSingleTransformer"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/Board"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonBaseTransformer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/cards": {
+            "get": {
+                "tags": [
+                    "Cards"
+                ],
+                "summary": "Get Cards",
+                "operationId": "6fd8df1f24775f4d3b4ff0893a229304",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "examples": {
+                            "string": {
+                                "summary": "Set Parameter Application json",
+                                "value": "Application/json"
+                            }
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "board_id",
+                        "in": "query",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/JsonBaseTransformer"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/Card"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonBaseTransformer"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cards"
+                ],
+                "summary": "Create Card",
+                "operationId": "d64beef2964e72b1cd1c57d863f1bea1",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "examples": {
+                            "string": {
+                                "summary": "Set Parameter Application json",
+                                "value": "Application/json"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CardStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/JsonBaseSingleTransformer"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/Card"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonBaseTransformer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/cards/{id}": {
+            "get": {
+                "tags": [
+                    "Cards"
+                ],
+                "summary": "Get Card by ID",
+                "operationId": "b3d0101ac40f03b6969ad7997be0fff4",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "examples": {
+                            "string": {
+                                "summary": "Set Parameter Application json",
+                                "value": "Application/json"
+                            }
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "examples": {
+                            "int": {
+                                "summary": "Card ID value",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/JsonBaseSingleTransformer"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/Card"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonBaseTransformer"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Cards"
+                ],
+                "summary": "Create Card",
+                "operationId": "0eba9624b6178a50177fa90415200b6e",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "examples": {
+                            "string": {
+                                "summary": "Set Parameter Application json",
+                                "value": "Application/json"
+                            }
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "examples": {
+                            "int": {
+                                "summary": "Card ID value",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CardEditRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/JsonBaseSingleTransformer"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/Card"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonBaseTransformer"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cards"
+                ],
+                "summary": "Delete Card by ID",
+                "operationId": "4e0cac75c6a193b0522c0baa6855a09c",
+                "parameters": [
+                    {
+                        "name": "Accept",
+                        "in": "header",
+                        "examples": {
+                            "string": {
+                                "summary": "Set Parameter Application json",
+                                "value": "Application/json"
+                            }
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "examples": {
+                            "int": {
+                                "summary": "Card ID value",
+                                "value": "1"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "$ref": "#/components/schemas/JsonBaseSingleTransformer"
+                                        },
+                                        {
+                                            "$ref": "#/components/schemas/Card"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/JsonBaseTransformer"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CardEditRequest": {
+                "title": "Card Edit Request Schema",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Do Task A"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius velit dolor, eu tempor odio rhoncus volutpat. Nam iaculis, sapien eu mollis luctus, tortor nisl fermentum sapien, eget scelerisque purus lorem ut mauris. Aenean porta nunc et nisl cursus volutpat. Suspendisse urna augue, fringilla ut faucibus nec, luctus vitae mi. Praesent non fringilla arcu. Vivamus sit amet pharetra urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper tincidunt ex, id varius ex luctus vitae."
+                    },
+                    "color": {
+                        "type": "string",
+                        "example": "#ecdc31"
+                    },
+                    "board_id": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "CardStoreRequest": {
+                "title": "Card Store Request Schema",
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "example": "Do Task A"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius velit dolor, eu tempor odio rhoncus volutpat. Nam iaculis, sapien eu mollis luctus, tortor nisl fermentum sapien, eget scelerisque purus lorem ut mauris. Aenean porta nunc et nisl cursus volutpat. Suspendisse urna augue, fringilla ut faucibus nec, luctus vitae mi. Praesent non fringilla arcu. Vivamus sit amet pharetra urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper tincidunt ex, id varius ex luctus vitae."
+                    },
+                    "color": {
+                        "type": "string",
+                        "example": "#ecdc31"
+                    },
+                    "board_id": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                },
+                "type": "object"
+            },
+            "Board": {
+                "title": "Board Schema",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Backlog"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2023-05-20T15:47:19.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2023-05-20T15:47:19.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "Card": {
+                "title": "Card Schema",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "Do Task A"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius velit dolor, eu tempor odio rhoncus volutpat. Nam iaculis, sapien eu mollis luctus, tortor nisl fermentum sapien, eget scelerisque purus lorem ut mauris. Aenean porta nunc et nisl cursus volutpat. Suspendisse urna augue, fringilla ut faucibus nec, luctus vitae mi. Praesent non fringilla arcu. Vivamus sit amet pharetra urna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus semper tincidunt ex, id varius ex luctus vitae."
+                    },
+                    "color": {
+                        "type": "string",
+                        "example": "#ecdc31"
+                    },
+                    "board_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "example": "2023-05-20T15:47:19.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "example": "2023-05-20T15:47:19.000000Z"
+                    }
+                },
+                "type": "object"
+            },
+            "JsonBaseTransformer": {
+                "title": "Json Base Transformer",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "code": {
+                        "type": "integer"
+                    },
+                    "http_code": {
+                        "type": "integer"
+                    },
+                    "locale": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "additional": {
+                        "type": "string"
+                    },
+                    "links": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "first": {
+                                    "type": "string"
+                                },
+                                "last": {
+                                    "type": "string"
+                                },
+                                "prev": {
+                                    "type": "string"
+                                },
+                                "next": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "meta": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "current_page": {
+                                    "type": "integer"
+                                },
+                                "from": {
+                                    "type": "integer"
+                                },
+                                "last_page": {
+                                    "type": "string"
+                                },
+                                "path": {
+                                    "type": "string"
+                                },
+                                "per_page": {
+                                    "type": "string"
+                                },
+                                "to": {
+                                    "type": "string"
+                                },
+                                "total": {
+                                    "type": "integer"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "data": {
+                        "description": "Array of returned data",
+                        "type": "array",
+                        "items": {}
+                    }
+                },
+                "type": "object"
+            },
+            "JsonBaseSingleTransformer": {
+                "title": "Json Base Single Transformer",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    },
+                    "code": {
+                        "type": "integer"
+                    },
+                    "http_code": {
+                        "type": "integer"
+                    },
+                    "locale": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "additional": {
+                        "type": "string"
+                    },
+                    "links": {
+                        "type": "array",
+                        "items": {}
+                    },
+                    "meta": {
+                        "type": "array",
+                        "items": {}
+                    },
+                    "data": {
+                        "description": "Returned data"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

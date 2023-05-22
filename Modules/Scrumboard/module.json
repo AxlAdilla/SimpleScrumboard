@@ -1,0 +1,11 @@
+{
+    "name": "Scrumboard",
+    "alias": "scrumboard",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Scrumboard\\Providers\\ScrumboardServiceProvider"
+    ],
+    "files": []
+}
