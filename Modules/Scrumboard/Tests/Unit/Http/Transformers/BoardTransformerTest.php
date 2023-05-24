@@ -34,5 +34,6 @@ class BoardTransformerTest extends TestCase
         $this->assertArrayHasKey('name', $boardTransformer);
         $this->assertArrayHasKey('created_at', $boardTransformer);
         $this->assertArrayHasKey('updated_at', $boardTransformer);
+        $this->assertArrayHasKey('cards', $boardTransformer);
     }
 }

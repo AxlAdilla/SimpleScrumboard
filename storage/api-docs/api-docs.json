@@ -491,6 +491,10 @@
                     "updated_at": {
                         "type": "string",
                         "example": "2023-05-20T15:47:19.000000Z"
+                    },
+                    "cards": {
+                        "type": "array",
+                        "items": {}
                     }
                 },
                 "type": "object"
