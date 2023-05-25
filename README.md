@@ -28,10 +28,16 @@ composer install
 npm install
 ```
 
-* setting .env and migrate
+* setting .env
 
 ```
-php artisan migrate:seed
+cp .env.example .env
+```
+
+* migrate
+
+```
+php artisan migrate
 ```
 
 * seed the database
