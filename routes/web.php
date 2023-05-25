@@ -1,6 +1,9 @@
 <?php
 
+use Inertia\Inertia;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('scrumboard')->name('scrumboard.')->group(function () {
+    Route::get('/', function () { return Inertia::render('Scrumboard'); })->name('index');
+    Route::get('/create/{id}', function (Request $request) { 
+        return Inertia::render('Create', [
+            'board_id' => $request->route('id')
+        ]); 
+    })->name('create');
 });

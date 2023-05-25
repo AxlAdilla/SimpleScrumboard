@@ -27,7 +27,7 @@
         <a href="{{ url('/api/documentation') }}">
           <button class="btn btn-outline-primary me-2">API Documentation</button>
         </a>
-        <a href="#">
+        <a href="https://github.com/AxlAdilla/SimpleScrumboard">
           <button class="btn btn-primary">Github</button>
         </a>
       </div>
@@ -44,7 +44,7 @@
         <p class="subtitle">Our application is designed to help you manage your project tasks and organize your work using the Scrum methodology. 
         </p>
         <div class="buttons">
-          <a href="#">
+          <a href="{{route('scrumboard.index')}}">
             <button class="btn btn-primary me-2">Try now</button>
           </a>
         </div>
@@ -163,13 +163,13 @@
           </b>
           </li>
           <li class="list-group-item ">
-          <a href="" class="link sitemap-items">API Documentation</a>
+          <a href="{{ url('/api/documentation') }}" class="link sitemap-items">API Documentation</a>
           </li>
           <li class="list-group-item sitemap-items">
-          <a href="" class="link sitemap-items">Github</a>
+          <a href="https://github.com/AxlAdilla/SimpleScrumboard" class="link sitemap-items">Github</a>
           </li>
           <li class="list-group-item sitemap-items">
-          <a href="" class="link sitemap-items">Go To App</a>
+          <a href="{{route('scrumboard.index')}}" class="link sitemap-items">Go To App</a>
           </li>
         </ul>
         </div>
